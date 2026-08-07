@@ -71,17 +71,17 @@ video {
 
 .brand {
     display: inline-flex;
-    align-items: baseline;
-    gap: 0.6rem;
+    align-items: center;
+    gap: 1rem;
     text-transform: uppercase;
 }
 
-.brand-main {
-    color: var(--red);
-    font-size: 2rem;
-    font-weight: 900;
-    letter-spacing: -0.08em;
-    transform: skew(-8deg);
+.brand-logo {
+    width: 105px;
+    height: 58px;
+    object-fit: contain;
+    object-position: center;
+    display: block;
 }
 
 .brand-sub {
@@ -181,15 +181,14 @@ video {
 }
 
 .hero::after {
-    content: "JC5";
+    content: "";
     position: absolute;
-    right: -2vw;
-    bottom: -12vh;
-    color: rgba(255, 255, 255, 0.025);
-    font-size: clamp(14rem, 31vw, 34rem);
-    font-weight: 900;
-    line-height: 0.8;
-    letter-spacing: -0.12em;
+    right: -5vw;
+    bottom: -15vh;
+    width: min(48vw, 720px);
+    aspect-ratio: 1;
+    background: url("../assets/logos/jc5-logo.png") center / contain no-repeat;
+    opacity: 0.025;
     pointer-events: none;
 }
 
@@ -302,33 +301,26 @@ video {
 .hero-badge {
     position: absolute;
     right: 9%;
-    top: 50%;
-    width: 210px;
-    height: 210px;
+    top: 46%;
+    width: 190px;
+    height: 190px;
     border: 2px solid rgba(255, 255, 255, 0.16);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0.3rem;
-    transform: translateY(-50%) rotate(-8deg);
+    transform: translateY(-50%);
     background: rgba(0, 0, 0, 0.28);
     backdrop-filter: blur(10px);
     z-index: 2;
 }
 
-.hero-badge span {
-    color: var(--white);
-    font-size: 3.2rem;
-    font-weight: 900;
-    letter-spacing: -0.08em;
-}
-
-.hero-badge strong {
-    color: var(--red);
-    font-size: 5.3rem;
-    font-weight: 900;
-    line-height: 1;
+.hero-logo {
+    width: 78%;
+    height: 78%;
+    object-fit: contain;
+    display: block;
+    filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.08));
 }
 
 .scroll-indicator {
@@ -461,24 +453,23 @@ video {
 }
 
 .quote-card::before {
-    content: "5";
+    content: "";
     position: absolute;
-    right: -15px;
-    top: -40px;
-    color: rgba(255, 255, 255, 0.08);
-    font-size: 13rem;
-    font-weight: 900;
-    line-height: 1;
+    right: -25px;
+    top: -20px;
+    width: 230px;
+    height: 150px;
+    background: url("../assets/logos/jc5-logo.png") center / contain no-repeat;
+    opacity: 0.08;
 }
 
-.quote-card span {
+.quote-logo {
     position: relative;
     z-index: 1;
-    color: rgba(255, 255, 255, 0.72);
-    font-size: 0.72rem;
-    font-weight: 900;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
+    width: 95px;
+    height: auto;
+    margin-bottom: 1rem;
+    object-fit: contain;
 }
 
 .quote-card blockquote {
@@ -640,12 +631,19 @@ video {
 }
 
 .video-placeholder::before {
-    content: "JC5";
+    content: "";
     position: absolute;
-    color: rgba(255, 255, 255, 0.025);
-    font-size: clamp(9rem, 25vw, 21rem);
-    font-weight: 900;
-    letter-spacing: -0.1em;
+    inset: 8%;
+    background: url("../assets/logos/jc5-logo.png") center / contain no-repeat;
+    opacity: 0.025;
+}
+
+.video-logo {
+    position: absolute;
+    width: min(52%, 480px);
+    height: auto;
+    opacity: 0.035;
+    pointer-events: none;
 }
 
 .play-button {
@@ -698,14 +696,18 @@ video {
 }
 
 .contact-card::after {
-    content: "JC5";
+    content: "";
     position: absolute;
-    right: -2%;
-    bottom: -25%;
-    color: rgba(255, 255, 255, 0.07);
-    font-size: clamp(8rem, 22vw, 18rem);
-    font-weight: 900;
-    line-height: 1;
+    right: -4%;
+    bottom: -18%;
+    width: min(42vw, 520px);
+    aspect-ratio: 1.4;
+    background: url("../assets/logos/jc5-logo.png") center / contain no-repeat;
+    opacity: 0.08;
+}
+
+.contact-logo {
+    display: none;
 }
 
 .contact-card > * {
@@ -759,16 +761,17 @@ video {
     font-size: 0.78rem;
 }
 
-.site-footer div {
+.footer-brand {
     display: flex;
-    align-items: baseline;
-    gap: 0.65rem;
+    align-items: center;
+    gap: 0.85rem;
 }
 
-.site-footer strong {
-    color: var(--red);
-    font-size: 1.35rem;
-    font-weight: 900;
+.footer-logo {
+    width: 82px;
+    height: 46px;
+    object-fit: contain;
+    display: block;
 }
 
 .site-footer span {
@@ -842,14 +845,6 @@ video {
         opacity: 0.58;
     }
 
-    .hero-badge span {
-        font-size: 2.5rem;
-    }
-
-    .hero-badge strong {
-        font-size: 4.3rem;
-    }
-
     .quick-profile {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -896,8 +891,14 @@ video {
         top: 70px;
     }
 
-    .brand-main {
-        font-size: 1.75rem;
+    .brand-logo {
+        width: 78px;
+        height: 46px;
+    }
+
+    .brand-sub {
+        font-size: 0.62rem;
+        letter-spacing: 0.16em;
     }
 
     .hero {
@@ -992,8 +993,14 @@ video {
         padding: 2rem 6%;
     }
 
-    .site-footer div {
+    .footer-brand {
         flex-direction: column;
-        gap: 0.1rem;
+        align-items: flex-start;
+        gap: 0.35rem;
+    }
+
+    .footer-logo {
+        width: 70px;
+        height: 40px;
     }
 }
