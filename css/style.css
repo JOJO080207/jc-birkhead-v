@@ -1086,3 +1086,42 @@ video {
         height: 40px;
     }
 }
+/* HIGHLIGHT VIDEO */
+
+.highlight-video {
+    width: 100%;
+    max-width: 1000px;
+    aspect-ratio: 16 / 9;
+    display: block;
+    margin: 0 auto 1.5rem;
+    background: #000;
+    border: 1px solid var(--border);
+    object-fit: contain;
+}
+
+.video-placeholder {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.video-placeholder p {
+    margin-top: 1rem;
+    color: var(--white);
+    font-size: 1.1rem;
+    font-weight: 800;
+}
+
+.video-placeholder span {
+    color: var(--gray);
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+@media (max-width: 768px) {
+    .highlight-video {
+        aspect-ratio: 16 / 9;
+        margin-bottom: 1rem;
+    }
+}
