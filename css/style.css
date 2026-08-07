@@ -221,8 +221,8 @@ video {
 }
 
 .hero h1 {
-    max-width: 900px;
-    font-size: clamp(3.5rem, 8vw, 7.5rem);
+    max-width: 1100px;
+    font-size: clamp(3.2rem, 6.8vw, 6.8rem);
     font-weight: 900;
     line-height: 0.88;
     letter-spacing: -0.06em;
@@ -236,12 +236,10 @@ video {
 }
 
 .hero-name .first-name {
-    display: block;
     color: var(--white);
 }
 
 .hero-name .last-name {
-    display: block;
     color: var(--red);
     white-space: nowrap;
 }
