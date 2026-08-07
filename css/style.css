@@ -1426,3 +1426,18 @@ video {
     }
 
 }
+.dashboard-subtitle {
+    margin-top: 0.7rem;
+    color: var(--gray);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+@media (max-width: 680px) {
+    .dashboard-subtitle {
+        font-size: 0.7rem;
+        line-height: 1.5;
+    }
+}
