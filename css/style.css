@@ -229,9 +229,21 @@ video {
     text-transform: uppercase;
 }
 
-.hero h1 span {
+.hero-name {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.hero-name .first-name {
+    display: block;
+    color: var(--white);
+}
+
+.hero-name .last-name {
     display: block;
     color: var(--red);
+    white-space: nowrap;
 }
 
 .hero-role {
