@@ -1125,3 +1125,304 @@ video {
         margin-bottom: 1rem;
     }
 }
+/* =========================================================
+   JC5 ATHLETE DASHBOARD
+   ========================================================= */
+
+.athlete-dashboard {
+    width: min(var(--max-width), 90%);
+    margin: -42px auto 0;
+    padding: 2.2rem;
+    position: relative;
+    z-index: 20;
+    background:
+        linear-gradient(
+            135deg,
+            rgba(20, 20, 23, 0.98),
+            rgba(8, 8, 10, 0.98)
+        );
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.55);
+}
+
+.dashboard-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 2rem;
+    padding-bottom: 1.6rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.dashboard-label {
+    margin-bottom: 0.4rem;
+    color: var(--red);
+    font-size: 0.7rem;
+    font-weight: 900;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+}
+
+.dashboard-header h2 {
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    line-height: 1;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
+}
+
+.dashboard-class {
+    color: var(--gray);
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    text-align: right;
+}
+
+.dashboard-class strong {
+    display: block;
+    margin-top: 0.25rem;
+    color: var(--white);
+    font-size: 2.4rem;
+    line-height: 1;
+    letter-spacing: -0.05em;
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    margin-top: 1.5rem;
+    border: 1px solid var(--border);
+}
+
+.dashboard-grid article {
+    min-height: 105px;
+    padding: 1.35rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-right: 1px solid var(--border);
+}
+
+.dashboard-grid article:last-child {
+    border-right: 0;
+}
+
+.dashboard-grid span {
+    color: var(--gray);
+    font-size: 0.66rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.dashboard-grid strong {
+    margin-top: 0.4rem;
+    color: var(--white);
+    font-size: 1.2rem;
+}
+
+.dashboard-actions {
+    margin-top: 1.6rem;
+    display: flex;
+    gap: 1rem;
+}
+
+
+/* =========================================================
+   LATEST STRIP
+   ========================================================= */
+
+.latest-strip {
+    width: 100%;
+    margin-top: 42px;
+    min-height: 62px;
+    display: flex;
+    align-items: stretch;
+    overflow: hidden;
+    background: #0b0b0d;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+}
+
+.latest-label {
+    min-width: 145px;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--red);
+    color: var(--white);
+    font-size: 0.72rem;
+    font-weight: 900;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+}
+
+.latest-items {
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    gap: 2.4rem;
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-width: none;
+}
+
+.latest-items::-webkit-scrollbar {
+    display: none;
+}
+
+.latest-items span {
+    position: relative;
+    color: #d7d7dc;
+    font-size: 0.76rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.latest-items span:not(:last-child)::after {
+    content: "•";
+    position: absolute;
+    right: -1.35rem;
+    color: var(--red);
+}
+
+
+/* =========================================================
+   SPORT PROFILE UPGRADE
+   ========================================================= */
+
+.sport-card {
+    isolation: isolate;
+}
+
+.sport-content {
+    max-width: 620px;
+}
+
+.sport-kicker {
+    margin-bottom: 0.8rem;
+    display: block;
+    color: var(--red);
+    font-size: 0.7rem;
+    font-weight: 900;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+}
+
+.sport-content h3 {
+    max-width: 600px;
+    margin-bottom: 1rem;
+    color: var(--white);
+    font-size: clamp(2rem, 4vw, 4rem);
+    font-weight: 900;
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.85);
+}
+
+.sport-position {
+    text-shadow: 0 5px 25px rgba(0, 0, 0, 0.55);
+}
+
+.football-card,
+.basketball-card {
+    min-height: 540px;
+}
+
+.football-card::after,
+.basketball-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+        linear-gradient(
+            90deg,
+            rgba(0, 0, 0, 0.95) 0%,
+            rgba(0, 0, 0, 0.76) 37%,
+            rgba(0, 0, 0, 0.25) 72%,
+            rgba(0, 0, 0, 0.1) 100%
+        );
+}
+
+
+/* =========================================================
+   DASHBOARD / LATEST MOBILE
+   ========================================================= */
+
+@media (max-width: 980px) {
+
+    .dashboard-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .dashboard-grid article:nth-child(2) {
+        border-right: 0;
+    }
+
+    .dashboard-grid article:nth-child(-n + 2) {
+        border-bottom: 1px solid var(--border);
+    }
+
+}
+
+
+@media (max-width: 680px) {
+
+    .athlete-dashboard {
+        width: 100%;
+        margin-top: 0;
+        padding: 1.5rem;
+    }
+
+    .dashboard-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .dashboard-class {
+        text-align: left;
+    }
+
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .dashboard-grid article {
+        border-right: 0;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .dashboard-grid article:last-child {
+        border-bottom: 0;
+    }
+
+    .dashboard-actions {
+        flex-direction: column;
+    }
+
+    .latest-strip {
+        min-height: auto;
+        flex-direction: column;
+    }
+
+    .latest-label {
+        min-width: 100%;
+        min-height: 46px;
+        justify-content: flex-start;
+    }
+
+    .latest-items {
+        min-height: 58px;
+        padding: 0 1.5rem;
+        gap: 2rem;
+    }
+
+    .sport-content h3 {
+        font-size: 2.3rem;
+    }
+
+}
