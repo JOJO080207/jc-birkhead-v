@@ -1,67 +1,667 @@
-/* =========================================================
-   YOUTUBE MEDIA HUB
-   ========================================================= */
+:root {
+    --black: #050505;
+    --black-soft: #0d0d0f;
+    --panel: #141417;
+    --panel-light: #1b1b1f;
+    --white: #ffffff;
+    --gray: #a5a5ad;
+    --gray-dark: #66666f;
+    --red: #d71920;
+    --red-dark: #8f0f14;
+    --gold: #c9a227;
+    --border: rgba(255, 255, 255, 0.12);
+    --max-width: 1200px;
+}
 
-.youtube-media-card {
-    width: min(var(--max-width), 100%);
-    margin: 0 auto;
-    padding: 2.5rem;
+/* RESET */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--black);
+    color: var(--white);
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button,
+input,
+textarea {
+    font: inherit;
+}
+
+img,
+video {
+    max-width: 100%;
+    display: block;
+}
+
+/* HEADER */
+
+.site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 78px;
+    padding: 0 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    background: rgba(5, 5, 5, 0.88);
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(14px);
+    z-index: 1000;
+}
+
+.brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    text-transform: uppercase;
+}
+
+.brand-logo {
+    width: 105px;
+    height: 58px;
+    object-fit: contain;
+    object-position: center;
+    display: block;
+}
+
+.brand-sub {
+    color: var(--white);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+}
+
+.site-nav {
+    display: flex;
+    align-items: center;
+    gap: 1.7rem;
+}
+
+.site-nav a {
     position: relative;
+    color: #d6d6db;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    transition: color 0.25s ease;
+}
+
+.site-nav a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    width: 0;
+    height: 2px;
+    background: var(--red);
+    transition: width 0.25s ease;
+}
+
+.site-nav a:hover {
+    color: var(--white);
+}
+
+.site-nav a:hover::after {
+    width: 100%;
+}
+
+.menu-toggle {
+    display: none;
+    border: 0;
+    background: transparent;
+    color: var(--white);
+    font-size: 1.7rem;
+    cursor: pointer;
+}
+
+/* HERO */
+
+.hero {
+    position: relative;
+    min-height: 100vh;
+    padding: 130px 7% 70px;
+    display: flex;
+    align-items: center;
     overflow: hidden;
     background:
         linear-gradient(
-            135deg,
-            rgba(20, 20, 23, 0.98),
-            rgba(7, 7, 9, 0.98)
-        );
-    border: 1px solid var(--border);
-    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.45);
+            90deg,
+            rgba(0, 0, 0, 0.96) 0%,
+            rgba(0, 0, 0, 0.78) 42%,
+            rgba(0, 0, 0, 0.3) 72%,
+            rgba(0, 0, 0, 0.72) 100%
+        ),
+        radial-gradient(
+            circle at 78% 38%,
+            rgba(215, 25, 32, 0.36),
+            transparent 34%
+        ),
+        linear-gradient(135deg, #080808 0%, #131316 55%, #080808 100%);
 }
 
-.youtube-media-card::before {
+.hero::before {
     content: "";
     position: absolute;
     inset: 0;
     background:
-        radial-gradient(
-            circle at 85% 15%,
-            rgba(215, 25, 32, 0.24),
-            transparent 30%
-        ),
-        linear-gradient(
-            135deg,
-            rgba(215, 25, 32, 0.08),
-            transparent 55%
+        repeating-linear-gradient(
+            -12deg,
+            transparent 0,
+            transparent 54px,
+            rgba(255, 255, 255, 0.018) 55px,
+            transparent 56px
         );
     pointer-events: none;
 }
 
-.youtube-media-brand,
-.youtube-media-copy,
-.youtube-media-grid,
-.youtube-channel-action {
+.hero::after {
+    content: "";
+    position: absolute;
+    right: -5vw;
+    bottom: -15vh;
+    width: min(48vw, 720px);
+    aspect-ratio: 1;
+    background: url("../assets/logos/jc5-logo.png") center / contain no-repeat;
+    opacity: 0.025;
+    pointer-events: none;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(to top, var(--black) 0%, transparent 26%),
+        linear-gradient(to right, rgba(215, 25, 32, 0.08), transparent 32%);
+    pointer-events: none;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    width: min(760px, 100%);
+}
+
+.eyebrow {
+    margin-bottom: 1rem;
+    color: var(--red);
+    font-size: 0.74rem;
+    font-weight: 900;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+}
+
+.hero h1 {
+    max-width: 900px;
+    font-size: clamp(3.5rem, 8vw, 7.5rem);
+    font-weight: 900;
+    line-height: 0.88;
+    letter-spacing: -0.06em;
+    text-transform: uppercase;
+}
+
+.hero h1 span {
+    display: block;
+    color: var(--red);
+}
+
+.hero-role {
+    margin-top: 1.8rem;
+    color: var(--white);
+    font-size: clamp(1rem, 2vw, 1.35rem);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+}
+
+.hero-tagline {
+    margin-top: 0.35rem;
+    color: var(--gray);
+    font-size: 1rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.hero-actions,
+.dashboard-actions,
+.contact-actions {
+    margin-top: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.button {
+    min-width: 165px;
+    padding: 0.95rem 1.4rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid transparent;
+    font-size: 0.78rem;
+    font-weight: 900;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition:
+        transform 0.25s ease,
+        background 0.25s ease,
+        border-color 0.25s ease;
+}
+
+.button:hover {
+    transform: translateY(-3px);
+}
+
+.button-primary {
+    background: var(--red);
+    color: var(--white);
+}
+
+.button-primary:hover {
+    background: #ef1d25;
+}
+
+.button-secondary {
+    background: transparent;
+    color: var(--white);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.button-secondary:hover {
+    background: var(--white);
+    color: var(--black);
+}
+
+.hero-badge {
+    position: absolute;
+    right: 9%;
+    top: 46%;
+    width: 190px;
+    height: 190px;
+    border: 2px solid rgba(255, 255, 255, 0.16);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.28);
+    backdrop-filter: blur(10px);
+    z-index: 2;
+}
+
+.hero-logo {
+    width: 78%;
+    height: 78%;
+    object-fit: contain;
+    display: block;
+    filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.08));
+}
+
+/* ATHLETE SNAPSHOT */
+
+.athlete-dashboard {
+    width: min(var(--max-width), 90%);
+    margin: -42px auto 0;
+    padding: 2.2rem;
+    position: relative;
+    z-index: 20;
+    background:
+        linear-gradient(
+            135deg,
+            rgba(20, 20, 23, 0.98),
+            rgba(8, 8, 10, 0.98)
+        );
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.55);
+}
+
+.dashboard-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 2rem;
+    padding-bottom: 1.6rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.dashboard-label {
+    margin-bottom: 0.4rem;
+    color: var(--red);
+    font-size: 0.7rem;
+    font-weight: 900;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+}
+
+.dashboard-header h2 {
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    line-height: 1;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
+}
+
+.dashboard-subtitle {
+    margin-top: 0.7rem;
+    color: var(--gray);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.dashboard-class {
+    color: var(--gray);
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    text-align: right;
+}
+
+.dashboard-class strong {
+    display: block;
+    margin-top: 0.25rem;
+    color: var(--white);
+    font-size: 2.4rem;
+    line-height: 1;
+    letter-spacing: -0.05em;
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    margin-top: 1.5rem;
+    border: 1px solid var(--border);
+}
+
+.dashboard-grid article {
+    min-height: 105px;
+    padding: 1.35rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-right: 1px solid var(--border);
+}
+
+.dashboard-grid article:last-child {
+    border-right: 0;
+}
+
+.dashboard-grid span {
+    color: var(--gray);
+    font-size: 0.66rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.dashboard-grid strong {
+    margin-top: 0.4rem;
+    color: var(--white);
+    font-size: 1.2rem;
+}
+
+/* LATEST */
+
+.latest-strip {
+    width: 100%;
+    margin-top: 42px;
+    min-height: 62px;
+    display: flex;
+    align-items: stretch;
+    overflow: hidden;
+    background: #0b0b0d;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+}
+
+.latest-label {
+    min-width: 145px;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--red);
+    color: var(--white);
+    font-size: 0.72rem;
+    font-weight: 900;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+}
+
+.latest-items {
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    gap: 2.4rem;
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-width: none;
+}
+
+.latest-items::-webkit-scrollbar {
+    display: none;
+}
+
+.latest-items span {
+    position: relative;
+    color: #d7d7dc;
+    font-size: 0.76rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.latest-items span:not(:last-child)::after {
+    content: "•";
+    position: absolute;
+    right: -1.35rem;
+    color: var(--red);
+}
+
+/* GENERAL SECTIONS */
+
+.section {
+    width: min(var(--max-width), 88%);
+    margin: 0 auto;
+    padding: 105px 0;
+}
+
+.section-heading {
+    margin-bottom: 2.5rem;
+}
+
+.section-heading h2,
+.contact-card h2 {
+    font-size: clamp(2.3rem, 5vw, 4.6rem);
+    font-weight: 900;
+    line-height: 0.98;
+    letter-spacing: -0.045em;
+    text-transform: uppercase;
+}
+
+.section-heading h2::after {
+    content: "";
+    display: block;
+    width: 85px;
+    height: 5px;
+    margin-top: 1rem;
+    background: var(--red);
+}
+
+/* ABOUT */
+
+.about-section {
+    padding-top: 130px;
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 1.3fr 0.8fr;
+    gap: 3rem;
+    align-items: stretch;
+}
+
+.about-copy {
+    color: #d0d0d5;
+    font-size: 1.08rem;
+}
+
+.about-copy p + p {
+    margin-top: 1.3rem;
+}
+
+.quote-card {
+    min-height: 260px;
+    padding: 2rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    overflow: hidden;
+    background:
+        linear-gradient(
+            135deg,
+            rgba(215, 25, 32, 0.92),
+            rgba(95, 6, 10, 0.96)
+        );
+}
+
+.quote-card::before {
+    content: "";
+    position: absolute;
+    right: -25px;
+    top: -20px;
+    width: 230px;
+    height: 150px;
+    background: url("../assets/logos/jc5-logo.png") center / contain no-repeat;
+    opacity: 0.08;
+}
+
+.quote-logo {
+    position: relative;
+    z-index: 1;
+    width: 95px;
+    height: auto;
+    margin-bottom: 1rem;
+    object-fit: contain;
+}
+
+.quote-card blockquote {
+    position: relative;
+    z-index: 1;
+    margin-top: 0.8rem;
+    font-size: clamp(1.5rem, 3vw, 2.3rem);
+    font-weight: 900;
+    line-height: 1.08;
+}
+
+/* SPORT SECTIONS */
+
+.sport-section {
+    border-top: 1px solid var(--border);
+}
+
+.sport-card {
+    min-height: 540px;
+    padding: 3rem;
+    position: relative;
+    isolation: isolate;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 2rem;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    background:
+        radial-gradient(
+            circle at 82% 25%,
+            rgba(215, 25, 32, 0.25),
+            transparent 32%
+        ),
+        linear-gradient(135deg, #17171b, #080809);
+}
+
+.sport-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    opacity: 0.72;
+    pointer-events: none;
+}
+
+.football-card::before {
+    background:
+        radial-gradient(
+            circle at 82% 25%,
+            rgba(215, 25, 32, 0.45),
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            rgba(215, 25, 32, 0.12),
+            transparent 60%
+        );
+}
+
+.basketball-card::before {
+    background:
+        radial-gradient(
+            circle at 82% 25%,
+            rgba(201, 162, 39, 0.32),
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            rgba(201, 162, 39, 0.1),
+            transparent 60%
+        );
+}
+
+.football-card::after,
+.basketball-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+        linear-gradient(
+            90deg,
+            rgba(0, 0, 0, 0.95) 0%,
+            rgba(0, 0, 0, 0.76) 37%,
+            rgba(0, 0, 0, 0.25) 72%,
+            rgba(0, 0, 0, 0.1) 100%
+        );
+}
+
+.sport-content {
+    max-width: 620px;
     position: relative;
     z-index: 2;
 }
 
-.youtube-media-brand {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-    padding-bottom: 1.8rem;
-    border-bottom: 1px solid var(--border);
-}
-
-.youtube-media-logo {
-    width: 120px;
-    height: 76px;
-    object-fit: contain;
-    flex-shrink: 0;
-}
-
-.youtube-kicker {
+.sport-kicker {
+    margin-bottom: 0.8rem;
     display: block;
-    margin-bottom: 0.35rem;
     color: var(--red);
     font-size: 0.7rem;
     font-weight: 900;
@@ -69,105 +669,92 @@
     text-transform: uppercase;
 }
 
-.youtube-media-brand h3 {
+.sport-content h3 {
+    max-width: 600px;
+    margin-bottom: 1rem;
     color: var(--white);
-    font-size: clamp(2rem, 5vw, 4rem);
-    line-height: 1;
-    letter-spacing: -0.05em;
+    font-size: clamp(2rem, 4vw, 4rem);
+    font-weight: 900;
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.85);
+}
+
+.sport-card p {
+    max-width: 620px;
+    color: #d3d3d8;
+    font-size: 1.05rem;
+}
+
+.sport-position {
+    position: relative;
+    z-index: 2;
+    color: rgba(255, 255, 255, 0.10);
+    font-size: clamp(7rem, 16vw, 13rem);
+    font-weight: 900;
+    line-height: 0.75;
+    text-shadow: 0 5px 25px rgba(0, 0, 0, 0.55);
+}
+
+.text-link {
+    margin-top: 1.4rem;
+    display: inline-block;
+    color: var(--red);
+    font-size: 0.78rem;
+    font-weight: 900;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
 }
 
-.youtube-media-copy {
-    max-width: 850px;
-    margin: 1.8rem 0 2rem;
-    color: var(--gray);
-    font-size: 1rem;
-    line-height: 1.8;
+.text-link:hover {
+    color: var(--white);
 }
 
-.youtube-media-grid {
+/* ACADEMICS */
+
+.academics-section {
+    border-top: 1px solid var(--border);
+}
+
+.academic-card {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.25rem;
+    grid-template-columns: repeat(3, 1fr);
+    border: 1px solid var(--border);
+    background: var(--panel);
 }
 
-.youtube-feature-card {
-    min-height: 300px;
+.academic-card div {
+    min-height: 210px;
     padding: 2rem;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    position: relative;
-    overflow: hidden;
-    background:
-        linear-gradient(
-            145deg,
-            rgba(28, 28, 32, 0.96),
-            rgba(10, 10, 12, 0.98)
-        );
-    border: 1px solid var(--border);
+    border-right: 1px solid var(--border);
 }
 
-.youtube-feature-card::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background:
-        linear-gradient(
-            135deg,
-            rgba(215, 25, 32, 0.14),
-            transparent 60%
-        );
-    pointer-events: none;
+.academic-card div:last-child {
+    border-right: 0;
 }
 
-.youtube-feature-card > * {
-    position: relative;
-    z-index: 2;
-}
-
-.youtube-feature-label {
-    margin-bottom: 0.65rem;
-    color: var(--red);
-    font-size: 0.68rem;
-    font-weight: 900;
-    letter-spacing: 0.17em;
-    text-transform: uppercase;
-}
-
-.youtube-feature-card strong {
-    max-width: 500px;
+.academic-card strong {
     color: var(--white);
-    font-size: clamp(1.7rem, 3vw, 2.8rem);
-    line-height: 1;
-    letter-spacing: -0.04em;
-    text-transform: uppercase;
+    font-size: 1.35rem;
 }
 
-.youtube-feature-card p {
-    max-width: 500px;
-    margin: 1rem 0 1.5rem;
+.academic-card span {
+    margin-top: 0.6rem;
     color: var(--gray);
-    font-size: 0.92rem;
 }
 
-.youtube-feature-card .button {
-    align-self: flex-start;
+/* MEDIA / YOUTUBE */
+
+.media-section {
+    border-top: 1px solid var(--border);
 }
-
-.youtube-channel-action {
-    margin-top: 1.5rem;
-    display: flex;
-    justify-content: center;
-}
-
-
-/* =========================================================
-   YOUTUBE MEDIA HUB
-   ========================================================= */
 
 .youtube-media-card {
-    width: min(1180px, calc(100% - 2rem));
+    width: 100%;
     margin: 0 auto;
     padding: 2.5rem;
     position: relative;
@@ -217,7 +804,7 @@
 }
 
 .youtube-media-logo {
-    display: block;
+    display: block !important;
     width: 120px !important;
     height: 76px !important;
     max-width: 120px !important;
@@ -332,15 +919,339 @@
     justify-content: center;
 }
 
+/* CONTACT */
 
-/* =========================================================
-   YOUTUBE MEDIA MOBILE
-   ========================================================= */
+.contact-section {
+    padding-bottom: 120px;
+}
 
-@media (max-width: 768px) {
+.contact-card {
+    padding: clamp(2.5rem, 6vw, 5rem);
+    position: relative;
+    overflow: hidden;
+    background:
+        linear-gradient(
+            120deg,
+            rgba(215, 25, 32, 0.96),
+            rgba(89, 7, 11, 0.96)
+        );
+}
+
+.contact-card::after {
+    content: "";
+    position: absolute;
+    right: -4%;
+    bottom: -18%;
+    width: min(42vw, 520px);
+    aspect-ratio: 1.4;
+    background: url("../assets/logos/jc5-logo.png") center / contain no-repeat;
+    opacity: 0.08;
+}
+
+.contact-logo {
+    display: none;
+}
+
+.contact-card > * {
+    position: relative;
+    z-index: 1;
+}
+
+.contact-card .eyebrow {
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.contact-card p:not(.eyebrow) {
+    max-width: 700px;
+    margin-top: 1.3rem;
+    color: rgba(255, 255, 255, 0.86);
+    font-size: 1.05rem;
+}
+
+.contact-card .button-primary {
+    background: var(--white);
+    color: var(--black);
+}
+
+.contact-card .button-primary:hover {
+    background: #ececef;
+}
+
+.contact-card .button-secondary {
+    border-color: rgba(255, 255, 255, 0.7);
+}
+
+/* FOOTER */
+
+.site-footer {
+    min-height: 125px;
+    padding: 2rem 6%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    border-top: 1px solid var(--border);
+    background: var(--black-soft);
+    color: var(--gray);
+    font-size: 0.78rem;
+}
+
+.footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+}
+
+.footer-logo {
+    width: 82px;
+    height: 46px;
+    object-fit: contain;
+    display: block;
+}
+
+.site-footer span {
+    color: var(--white);
+}
+
+/* ANIMATIONS */
+
+.hero-content,
+.hero-badge,
+.athlete-dashboard,
+.latest-strip,
+.section-heading,
+.about-grid,
+.sport-card,
+.academic-card,
+.youtube-media-card,
+.contact-card {
+    animation: fade-up 0.7s ease both;
+}
+
+@keyframes fade-up {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* TABLET */
+
+@media (max-width: 980px) {
+    .site-header {
+        padding: 0 4%;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .site-nav {
+        position: absolute;
+        top: 78px;
+        left: 0;
+        width: 100%;
+        padding: 1.5rem 5%;
+        display: none;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.2rem;
+        background: rgba(5, 5, 5, 0.98);
+        border-bottom: 1px solid var(--border);
+    }
+
+    .site-nav.active {
+        display: flex;
+    }
+
+    .hero {
+        padding-left: 6%;
+        padding-right: 6%;
+    }
+
+    .hero-badge {
+        right: 5%;
+        width: 170px;
+        height: 170px;
+        opacity: 0.58;
+    }
+
+    .dashboard-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .dashboard-grid article:nth-child(2) {
+        border-right: 0;
+    }
+
+    .dashboard-grid article:nth-child(-n + 2) {
+        border-bottom: 1px solid var(--border);
+    }
+
+    .about-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .academic-card {
+        grid-template-columns: 1fr;
+    }
+
+    .academic-card div {
+        border-right: 0;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .academic-card div:last-child {
+        border-bottom: 0;
+    }
+
+    .site-footer {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+/* MOBILE */
+
+@media (max-width: 680px) {
+    .site-header {
+        min-height: 70px;
+    }
+
+    .site-nav {
+        top: 70px;
+    }
+
+    .brand-logo {
+        width: 78px;
+        height: 46px;
+    }
+
+    .brand-sub {
+        font-size: 0.62rem;
+        letter-spacing: 0.16em;
+    }
+
+    .hero {
+        min-height: 92vh;
+        padding: 120px 7% 80px;
+        align-items: flex-end;
+    }
+
+    .hero h1 {
+        font-size: clamp(3rem, 16vw, 5.4rem);
+    }
+
+    .hero-role {
+        font-size: 0.95rem;
+    }
+
+    .hero-tagline {
+        font-size: 0.78rem;
+    }
+
+    .hero-actions,
+    .dashboard-actions,
+    .contact-actions {
+        flex-direction: column;
+    }
+
+    .button {
+        width: 100%;
+    }
+
+    .hero-badge {
+        top: 24%;
+        right: -35px;
+        width: 145px;
+        height: 145px;
+        opacity: 0.36;
+    }
+
+    .athlete-dashboard {
+        width: 100%;
+        margin-top: 0;
+        padding: 1.5rem;
+    }
+
+    .dashboard-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .dashboard-class {
+        text-align: left;
+    }
+
+    .dashboard-subtitle {
+        font-size: 0.7rem;
+        line-height: 1.5;
+    }
+
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .dashboard-grid article {
+        border-right: 0;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .dashboard-grid article:last-child {
+        border-bottom: 0;
+    }
+
+    .latest-strip {
+        min-height: auto;
+        flex-direction: column;
+    }
+
+    .latest-label {
+        min-width: 100%;
+        min-height: 46px;
+        justify-content: flex-start;
+    }
+
+    .latest-items {
+        min-height: 58px;
+        padding: 0 1.5rem;
+        gap: 2rem;
+    }
+
+    .section {
+        width: min(88%, 620px);
+        padding: 75px 0;
+    }
+
+    .about-section {
+        padding-top: 85px;
+    }
+
+    .sport-card {
+        min-height: 370px;
+        padding: 2rem;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-end;
+    }
+
+    .sport-content h3 {
+        font-size: 2.3rem;
+    }
+
+    .sport-position {
+        position: absolute;
+        right: 1rem;
+        top: 1rem;
+        font-size: 7rem;
+    }
 
     .youtube-media-card {
-        width: calc(100% - 1rem);
         padding: 1.5rem;
     }
 
@@ -373,5 +1284,26 @@
     .youtube-channel-action .button {
         width: 100%;
         text-align: center;
+    }
+
+    .contact-card {
+        margin-left: -4%;
+        margin-right: -4%;
+        padding: 2.4rem 1.6rem;
+    }
+
+    .site-footer {
+        padding: 2rem 6%;
+    }
+
+    .footer-brand {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.35rem;
+    }
+
+    .footer-logo {
+        width: 70px;
+        height: 40px;
     }
 }
