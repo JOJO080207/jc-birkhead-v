@@ -163,12 +163,184 @@
 
 
 /* =========================================================
+   YOUTUBE MEDIA HUB
+   ========================================================= */
+
+.youtube-media-card {
+    width: min(1180px, calc(100% - 2rem));
+    margin: 0 auto;
+    padding: 2.5rem;
+    position: relative;
+    overflow: hidden;
+    background:
+        linear-gradient(
+            135deg,
+            rgba(20, 20, 23, 0.98),
+            rgba(7, 7, 9, 0.98)
+        );
+    border: 1px solid var(--border);
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.45);
+}
+
+.youtube-media-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(
+            circle at 85% 15%,
+            rgba(215, 25, 32, 0.24),
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            rgba(215, 25, 32, 0.08),
+            transparent 55%
+        );
+    pointer-events: none;
+}
+
+.youtube-media-brand,
+.youtube-media-copy,
+.youtube-media-grid,
+.youtube-channel-action {
+    position: relative;
+    z-index: 2;
+}
+
+.youtube-media-brand {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding-bottom: 1.8rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.youtube-media-logo {
+    display: block;
+    width: 120px !important;
+    height: 76px !important;
+    max-width: 120px !important;
+    max-height: 76px !important;
+    object-fit: contain;
+    flex: 0 0 120px;
+}
+
+.youtube-kicker {
+    display: block;
+    margin-bottom: 0.35rem;
+    color: var(--red);
+    font-size: 0.7rem;
+    font-weight: 900;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+}
+
+.youtube-media-brand h3 {
+    margin: 0;
+    color: var(--white);
+    font-size: clamp(2rem, 5vw, 4rem);
+    line-height: 1;
+    letter-spacing: -0.05em;
+    text-transform: uppercase;
+}
+
+.youtube-media-copy {
+    max-width: 850px;
+    margin: 1.8rem 0 2rem;
+    color: var(--gray);
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+.youtube-media-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
+}
+
+.youtube-feature-card {
+    min-height: 300px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    position: relative;
+    overflow: hidden;
+    background:
+        linear-gradient(
+            145deg,
+            rgba(28, 28, 32, 0.96),
+            rgba(10, 10, 12, 0.98)
+        );
+    border: 1px solid var(--border);
+}
+
+.youtube-feature-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(
+            135deg,
+            rgba(215, 25, 32, 0.14),
+            transparent 60%
+        );
+    pointer-events: none;
+}
+
+.youtube-feature-card > * {
+    position: relative;
+    z-index: 2;
+}
+
+.youtube-feature-label {
+    display: block;
+    margin-bottom: 0.65rem;
+    color: var(--red);
+    font-size: 0.68rem;
+    font-weight: 900;
+    letter-spacing: 0.17em;
+    text-transform: uppercase;
+}
+
+.youtube-feature-card strong {
+    display: block;
+    max-width: 500px;
+    color: var(--white);
+    font-size: clamp(1.7rem, 3vw, 2.8rem);
+    line-height: 1;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
+}
+
+.youtube-feature-card p {
+    max-width: 500px;
+    margin: 1rem 0 1.5rem;
+    color: var(--gray);
+    font-size: 0.92rem;
+    line-height: 1.6;
+}
+
+.youtube-feature-card .button {
+    align-self: flex-start;
+}
+
+.youtube-channel-action {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: center;
+}
+
+
+/* =========================================================
    YOUTUBE MEDIA MOBILE
    ========================================================= */
 
 @media (max-width: 768px) {
 
     .youtube-media-card {
+        width: calc(100% - 1rem);
         padding: 1.5rem;
     }
 
@@ -178,8 +350,11 @@
     }
 
     .youtube-media-logo {
-        width: 95px;
-        height: 60px;
+        width: 95px !important;
+        height: 60px !important;
+        max-width: 95px !important;
+        max-height: 60px !important;
+        flex-basis: 95px;
     }
 
     .youtube-media-grid {
@@ -199,5 +374,4 @@
         width: 100%;
         text-align: center;
     }
-
 }
