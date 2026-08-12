@@ -199,7 +199,7 @@ video {
 .hero-content {
     position: relative;
     z-index: 2;
-    width: min(760px, 100%);
+    width: min(980px, 100%);
 }
 
 .eyebrow {
@@ -212,7 +212,7 @@ video {
 }
 
 .hero h1 {
-    max-width: 900px;
+    max-width: 980px;
     font-size: clamp(3.5rem, 8vw, 7.5rem);
     font-weight: 900;
     line-height: 0.88;
@@ -222,7 +222,15 @@ video {
 
 .hero h1 span {
     display: block;
+}
+
+.hero .first-name {
+    color: var(--white);
+}
+
+.hero .last-name {
     color: var(--red);
+    white-space: nowrap;
 }
 
 .hero-role {
@@ -611,30 +619,28 @@ video {
 
 .football-card::before {
     background:
-        radial-gradient(
-            circle at 82% 25%,
-            rgba(215, 25, 32, 0.45),
-            transparent 30%
-        ),
         linear-gradient(
-            135deg,
-            rgba(215, 25, 32, 0.12),
-            transparent 60%
-        );
+            90deg,
+            rgba(0, 0, 0, 0.94) 0%,
+            rgba(0, 0, 0, 0.78) 38%,
+            rgba(0, 0, 0, 0.24) 72%,
+            rgba(0, 0, 0, 0.08) 100%
+        ),
+        url("../assets/images/jc5-football.JPG") center 38% / cover no-repeat;
+    opacity: 1;
 }
 
 .basketball-card::before {
     background:
-        radial-gradient(
-            circle at 82% 25%,
-            rgba(201, 162, 39, 0.32),
-            transparent 30%
-        ),
         linear-gradient(
-            135deg,
-            rgba(201, 162, 39, 0.1),
-            transparent 60%
-        );
+            90deg,
+            rgba(0, 0, 0, 0.94) 0%,
+            rgba(0, 0, 0, 0.76) 38%,
+            rgba(0, 0, 0, 0.22) 72%,
+            rgba(0, 0, 0, 0.08) 100%
+        ),
+        url("../assets/images/jc5-basketball.jpg") center 38% / cover no-repeat;
+    opacity: 1;
 }
 
 .football-card::after,
@@ -645,11 +651,9 @@ video {
     z-index: -1;
     background:
         linear-gradient(
-            90deg,
-            rgba(0, 0, 0, 0.95) 0%,
-            rgba(0, 0, 0, 0.76) 37%,
-            rgba(0, 0, 0, 0.25) 72%,
-            rgba(0, 0, 0, 0.1) 100%
+            to top,
+            rgba(0, 0, 0, 0.42) 0%,
+            transparent 48%
         );
 }
 
@@ -1145,6 +1149,10 @@ video {
 
     .hero h1 {
         font-size: clamp(3rem, 16vw, 5.4rem);
+    }
+
+    .hero .last-name {
+        white-space: normal;
     }
 
     .hero-role {
