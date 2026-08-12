@@ -626,7 +626,7 @@ video {
             rgba(0, 0, 0, 0.24) 72%,
             rgba(0, 0, 0, 0.08) 100%
         ),
-        url("../assets/images/jc5-football.JPG") center 38% / cover no-repeat;
+        url("../assets/images/jc5-football.jpg") center 38% / cover no-repeat;
     opacity: 1;
 }
 
